@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveOS - Домашняя страница</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            background-color: #ffffff;
+            padding: 12px 0;
+            border-bottom: 1px solid #e1e1e1;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0078d4;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #262626;
+            font-weight: 400;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-btn, .cart-btn, .signin-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+
+        .search-btn:hover, .cart-btn:hover, .signin-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .signin-btn {
+            background-color: #0078d4;
+            color: white;
+            padding: 8px 16px;
+        }
+
+        .signin-btn:hover {
+            background-color: #0066b4;
+        }
+
+        /* Главный баннер */
+        .hero {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+            color: white;
+            padding: 140px 20px 80px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background-color: #ffffff;
+            color: #0078d4;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Продукты */
+        .products {
+            max-width: 1600px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .product-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .product-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .product-link {
+            color: #0078d4;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .product-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Футер */
+        .footer {
+            background-color: #f2f2f2;
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            max-width: 1600px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #e1e1e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-lang {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🌀</span>
+                WaveOS
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#">WaveOS</a></li>
+                <li><a href="#">Функции</a></li>
+                <li><a href="#">Поддержка</a></li>
+                <li><a href="#">Загрузка</a></li>
+                <li><a href="#">Блог</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="search-btn">🔍</button>
+                <button class="cart-btn">🛒</button>
+                <button class="signin-btn">Войти</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <h1>Будущее симуляторв операционных систем уже здесь</h1>
+        <p>WaveOS - симулятор операционной системы Windows 10</p>
+        <button class="cta-button">Скачать WaveOS</button>
+    </section>
+
+    <!-- Продукты -->
+    <section class="products">
+        <h2 class="section-title">Наши продукты</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">🧮</div>
+                <h3>WaveOS Calculator</h3>
+                <p>Интеллектуальный калькулятор с поддержкой сложных вычислений и графиков</p>
+                <a href="#" class="product-link">Скачать бесплатно →</a>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">🌐</div>
+                <h3>Wave Browser</h3>
+                <p>Быстрый и безопасный браузер с встроенным блокировщиком рекламы</p>
+                <a href="#" class="product-link">Узнать больше →</a>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">📁</div>
+                <h3>Wave Explorer</h3>
+                <p>Продвинутый файловый менеджер с облачной синхронизацией</p>
+                <a href="#" class="product-link">Узнать больше →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>Что нового?</h4>
+                <ul class="footer-links">
+                    <li><a href="#">WaveOS 1.0</a></li>
+                    <li><a href="#">Wave Browser</a></li>
+                    <li><a href="#">Wave Explorer</a></li>
+                    <li><a href="#">Приложения</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Магазин</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Профиль аккаунта</a></li>
+                    <li><a href="#">Центр загрузки</a></li>
+                    <li><a href="#">Подписка</a></li>
+                    <li><a href="#">Возвраты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Для разработчиков</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">Сообщество</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Компания</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Карьера</a></li>
+                    <li><a href="#">О WaveOS</a></li>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Партнеры</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-lang">
+                <span>🌐</span>
+                <span>Русский (Россия)</span>
+            </div>
+            <div>
+                <a href="#">Конфиденциальность</a> | 
+                <a href="#">Условия использования</a> | 
+                <a href="#">Товарные знаки</a> | 
+                <a href="#">Контакты</a>
+            </div>
+            <div>© 2024 WaveOS Corporation. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>
